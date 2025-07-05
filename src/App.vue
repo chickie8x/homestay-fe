@@ -22,12 +22,14 @@
           <span class="text-[#f25a1a] font-[Coiny] text-xl">{{ currencyFormat(totalCost) }}</span>
         </div>
         <div>
-          <span class="text-[#f25a1a] text-sm">{{ `Giảm giá ${discountPercentage}% - Gốc ${currencyFormat(cost)}` }}</span>
+          <span class="text-[#f25a1a] text-sm">{{
+            `Giảm giá ${discountPercentage}% - Gốc ${currencyFormat(cost)}`
+          }}</span>
         </div>
       </div>
       <button
         @click="placeOrder"
-        class="text-[#f25a1a] text-2xl font-[Coiny] border border-[#f25a1a] px-2 py-1 rounded-lg ml-auto cursor-pointer hover:bg-[#f2371a] hover:text-white"
+        class="flex items-center justify-center text-[#f25a1a] text-2xl font-[Coiny] border border-[#f25a1a] px-2 py-1 rounded-lg ml-auto cursor-pointer hover:bg-[#f2371a] hover:text-white"
         :class="isBooked ? 'bg-[#f25a1a] text-white' : ''"
       >
         Đặt phòng

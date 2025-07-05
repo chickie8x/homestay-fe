@@ -26,10 +26,13 @@ const loading = ref(false)
 const cancelBooking = async () => {
   try {
     loading.value = true
-    const response = await axios.post(`https://homestay-be-rv98.onrender.com/api/public/bookings/cancel`, {
-      bookingId,
-      orderCode,
-    })
+    const response = await axios.post(
+      `https://homestay-be-rv98.onrender.com/api/public/bookings/cancel`,
+      {
+        bookingId,
+        orderCode,
+      },
+    )
     console.log(response.data)
     toast.success('Hủy đơn thành công')
   } catch (error) {

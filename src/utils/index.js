@@ -15,4 +15,3 @@ export const discountPercentageCalc = (timeRange) => {
     return 10
   } else return 20
 }
-

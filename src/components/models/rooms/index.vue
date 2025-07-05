@@ -316,11 +316,15 @@ const createRoom = async () => {
 
   console.log(data)
   try {
-    const response = await axios.post('https://homestay-be-rv98.onrender.com/api/admin/cms/room/create', data, {
-      headers: {
-        Authorization: `Bearer ${token}`,
+    const response = await axios.post(
+      'https://homestay-be-rv98.onrender.com/api/admin/cms/room/create',
+      data,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       },
-    })
+    )
     toast.success('Tạo phòng thành công')
     closeDialog()
     getRooms()

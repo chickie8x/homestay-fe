@@ -80,7 +80,9 @@ const checkoutLoading = ref(false)
 const getBooking = async () => {
   try {
     loading.value = true
-    const response = await axios.get(`https://homestay-be-rv98.onrender.com/api/public/bookings/${bookingId}`)
+    const response = await axios.get(
+      `https://homestay-be-rv98.onrender.com/api/public/bookings/${bookingId}`,
+    )
     booking.value = response.data.booking
     console.log(booking.value)
   } catch (error) {

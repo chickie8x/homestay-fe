@@ -59,7 +59,9 @@
             >
               <span
                 class="text-white text-xs font-sans font-semibold w-18 h-5 flex justify-center items-center rounded-full cursor-not-allowed"
-                :class="available[`${time.key}-${date.date}`] !== 'PAID' ? 'bg-[#9e8a86]' : 'bg-[#f25a1a]'"
+                :class="
+                  available[`${time.key}-${date.date}`] !== 'PAID' ? 'bg-[#9e8a86]' : 'bg-[#f25a1a]'
+                "
                 >{{ available[`${time.key}-${date.date}`] === 'PAID' ? 'Đã đặt' : 'Giữ chỗ' }}</span
               >
             </div>

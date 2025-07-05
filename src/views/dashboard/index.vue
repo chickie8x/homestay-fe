@@ -6,13 +6,13 @@
         <div class="flex items-center justify-between space-x-2 mt-2 border-b border-white">
           <div class="flex items-center space-x-2">
             <UserCircleIcon class="w-6 h-6 text-white" />
-            <span class="font-[Coiny] text-2xl text-white">{{ user.name }}</span>
+            <span class="font-[Coiny] text-xl text-white">{{ user.name }}</span>
           </div>
           <button
             @click="logout"
-            class="text-white px-2 py-1 rounded-lg hover:underline hover:cursor-pointer"
+            class="text-white px-2 py-1 rounded-lg hover:underline hover:cursor-pointer flex items-center justify-center"
           >
-            Đăng xuất
+            <ArrowLeftStartOnRectangleIcon class="w-6 h-6 text-white" />
           </button>
         </div>
         <div class="mt-8">
@@ -52,7 +52,7 @@ import { ref, onMounted, shallowRef } from 'vue'
 import { useRouter } from 'vue-router'
 import axios from 'axios'
 import { jwtDecode } from 'jwt-decode'
-import { UserCircleIcon, ClockIcon, HomeIcon } from '@heroicons/vue/24/outline'
+import { UserCircleIcon, ClockIcon, HomeIcon, ArrowLeftStartOnRectangleIcon } from '@heroicons/vue/24/outline'
 import { toast } from 'vue-sonner'
 import Bookings from '@/components/models/bookings/index.vue'
 import Rooms from '@/components/models/rooms/index.vue'

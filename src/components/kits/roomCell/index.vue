@@ -114,11 +114,14 @@ const emit = defineEmits(['deleteRoom', 'updateRoom'])
 const token = localStorage.getItem('token')
 const deleteRoom = async () => {
   try {
-    await axios.delete(`https://homestay-be-rv98.onrender.com/api/admin/cms/room/${props.room.id}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
+    await axios.delete(
+      `https://homestay-be-rv98.onrender.com/api/admin/cms/room/${props.room.id}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       },
-    })
+    )
     toast.success('Đã xóa phòng')
     emit('deleteRoom')
   } catch (error) {

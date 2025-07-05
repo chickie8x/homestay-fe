@@ -114,11 +114,14 @@
         </div>
         <div class="flex flex-col space-y-1">
           <span class="text-slate-700"
-            >Ảnh mặt sau CCCD <span class="text-white font-semibold text-xl">*</span></span
+            >Ảnh mặt sau CCCD <span class="text-red-600 font-semibold text-xl">*</span></span
           >
           <span class="text-xs text-slate-500">Dùng để khai báo cư trú</span>
           <imgUpload v-model="backID" />
         </div>
+      </div>
+      <div class="mt-4 flex items-center justify-start">
+        <Turnstile :siteKey="turnstileSiteKey" v-model="turnstileToken" />
       </div>
       <div class="mt-4 flex items-center space-x-2">
         <input type="checkbox" v-model="agreement" id="terms" class="w-4 h-4" />
@@ -130,7 +133,8 @@
       <div class="mt-4 flex items-center justify-end space-x-2">
         <button
           @click="placeOrder"
-          class="px-2 py-1 flex items-center justify-center cursor-pointer bg-[#f25a1a] text-white rounded-md transition-all duration-300 hover:bg-[#f2371a] hover:text-white"
+          class="px-2 py-1 flex items-center justify-center cursor-pointer bg-[#f25a1a] text-white rounded-md transition-all duration-300 hover:bg-[#f2371a] hover:text-white disabled:bg-slate-300 disabled:text-slate-500 disabled:cursor-not-allowed"
+          :disabled="!turnstileToken"
         >
           <Loading v-if="doPlaceOrder" />
           {{ doPlaceOrder ? 'Đang đặt phòng...' : 'Đặt phòng' }}
@@ -151,10 +155,14 @@ import axios from 'axios'
 import { toast } from 'vue-sonner'
 import imgUpload from '@/components/kits/img-upload/index.vue'
 import Loading from '@/components/icons/loading.vue'
+import Turnstile from '@/components/kits/turnstile/index.vue'
 
 const customerName = ref('')
 const customerPhone = ref('')
 const customerEmail = ref('')
+const turnstileToken = ref('')
+const turnstileSiteKey = import.meta.env.VITE_TURNSTILE_SITE_KEY
+
 const router = useRouter()
 const frontID = ref({
   img: null,
@@ -253,10 +261,13 @@ const placeOrder = async () => {
     checkin: `${booking.value.timeRange[0].start} - ${booking.value.date}`,
     checkout: `${booking.value.timeRange[booking.value.timeRange.length - 1].end} - ${checkoutDate.value}`,
     numberOfPeople: numPeople.value,
+    turnstileToken: turnstileToken.value
   }
-  console.log(data)
   try {
-    const response = await axios.post('https://homestay-be-rv98.onrender.com/api/public/bookings/create', data)
+    const response = await axios.post(
+      'https://homestay-be-rv98.onrender.com/api/public/bookings/create',
+      data,
+    )
     doPlaceOrder.value = false
     console.log(response.data)
     emit('close')
